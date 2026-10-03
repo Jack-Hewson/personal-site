@@ -169,6 +169,12 @@ a {
   line-height: 0.98;
 }
 
+.name-line-first {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.12em;
+}
+
 .home-intro h1 .name-line-last {
   color: #6e7d68;
   font-style: italic;
@@ -214,22 +220,55 @@ a {
   transform: none;
 }
 
+.home-intro h1 .name-letter-a {
+  width: 0.92em;
+  animation: none;
+  opacity: 1;
+  transform: none;
+}
+
+.home-intro h1 .name-letter-c {
+  width: 0.92em;
+  animation: none;
+  opacity: 1;
+  transform: none;
+}
+
+.home-intro h1 .name-letter-k {
+  width: 0.92em;
+  animation: none;
+  opacity: 1;
+  transform: none;
+}
+
 .name-letter-j::before {
   display: none;
 }
 
-.j-shape-grid {
+.name-letter-a::before {
+  display: none;
+}
+
+.name-letter-c::before {
+  display: none;
+}
+
+.name-letter-k::before {
+  display: none;
+}
+
+.letter-piece-grid {
   position: relative;
   display: block;
   width: 49px;
   height: 49px;
 }
 
-.j-piece {
+.falling-piece {
   position: absolute;
   display: grid;
   gap: 1px;
-  animation: j-piece-drop 560ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: tetromino-drop 560ms cubic-bezier(0.16, 1, 0.3, 1) both;
   will-change: transform, opacity;
 }
 
@@ -269,7 +308,181 @@ a {
   grid-area: bottom-right;
 }
 
-.j-shape-cell {
+.a-piece-cap {
+  top: 0;
+  left: 10px;
+  grid-template-areas: '. cap-top .' 'cap-left cap-center cap-right';
+  grid-template-columns: repeat(3, 9px);
+  grid-template-rows: repeat(2, 9px);
+}
+
+.a-piece-left {
+  top: 20px;
+  left: 10px;
+  grid-template-areas: 'left-top .' 'left-middle left-arm' 'left-bottom .';
+  grid-template-columns: repeat(2, 9px);
+  grid-template-rows: repeat(3, 9px);
+}
+
+.a-piece-right {
+  top: 20px;
+  left: 30px;
+  grid-template-areas: 'right-top .' 'right-middle .' 'right-bottom right-foot';
+  grid-template-columns: repeat(2, 9px);
+  grid-template-rows: repeat(3, 9px);
+}
+
+.c-piece-top {
+  top: 10px;
+  left: 0;
+  grid-template-areas: 'c-top-left c-top-middle c-top-right' 'c-top-stem . .';
+  grid-template-columns: repeat(3, 9px);
+  grid-template-rows: repeat(2, 9px);
+}
+
+.c-piece-bottom {
+  top: 30px;
+  left: 0;
+  grid-template-areas: 'c-bottom-stem . .' 'c-bottom-left c-bottom-middle c-bottom-right';
+  grid-template-columns: repeat(3, 9px);
+  grid-template-rows: repeat(2, 9px);
+}
+
+.k-piece-stem {
+  top: 0;
+  left: 0;
+  grid-template-rows: repeat(5, 9px);
+}
+
+.k-piece-upper {
+  top: 10px;
+  left: 10px;
+  grid-template-areas: '. upper-top-left upper-top-right' 'upper-bottom-left upper-bottom-right .';
+  grid-template-columns: repeat(3, 9px);
+  grid-template-rows: repeat(2, 9px);
+}
+
+.k-piece-lower {
+  top: 30px;
+  left: 10px;
+  grid-template-areas: 'lower-top-left lower-top-right .' '. lower-bottom-left lower-bottom-right';
+  grid-template-columns: repeat(3, 9px);
+  grid-template-rows: repeat(2, 9px);
+}
+
+.cap-top {
+  grid-area: cap-top;
+}
+
+.cap-left {
+  grid-area: cap-left;
+}
+
+.cap-center {
+  grid-area: cap-center;
+}
+
+.cap-right {
+  grid-area: cap-right;
+}
+
+.left-top {
+  grid-area: left-top;
+}
+
+.left-middle {
+  grid-area: left-middle;
+}
+
+.left-bottom {
+  grid-area: left-bottom;
+}
+
+.left-arm {
+  grid-area: left-arm;
+}
+
+.right-top {
+  grid-area: right-top;
+}
+
+.right-middle {
+  grid-area: right-middle;
+}
+
+.right-foot {
+  grid-area: right-foot;
+}
+
+.right-bottom {
+  grid-area: right-bottom;
+}
+
+.c-top-left {
+  grid-area: c-top-left;
+}
+
+.c-top-middle {
+  grid-area: c-top-middle;
+}
+
+.c-top-right {
+  grid-area: c-top-right;
+}
+
+.c-top-stem {
+  grid-area: c-top-stem;
+}
+
+.c-bottom-stem {
+  grid-area: c-bottom-stem;
+}
+
+.c-bottom-left {
+  grid-area: c-bottom-left;
+}
+
+.c-bottom-middle {
+  grid-area: c-bottom-middle;
+}
+
+.c-bottom-right {
+  grid-area: c-bottom-right;
+}
+
+.upper-top-left {
+  grid-area: upper-top-left;
+}
+
+.upper-top-right {
+  grid-area: upper-top-right;
+}
+
+.upper-bottom-left {
+  grid-area: upper-bottom-left;
+}
+
+.upper-bottom-right {
+  grid-area: upper-bottom-right;
+}
+
+.lower-top-left {
+  grid-area: lower-top-left;
+}
+
+.lower-top-right {
+  grid-area: lower-top-right;
+}
+
+.lower-bottom-left {
+  grid-area: lower-bottom-left;
+}
+
+.lower-bottom-right {
+  grid-area: lower-bottom-right;
+}
+
+.piece-cell {
   width: 9px;
   height: 9px;
   border: 1px solid rgb(255 255 255 / 45%);
@@ -411,7 +624,7 @@ a {
   }
 }
 
-@keyframes j-piece-drop {
+@keyframes tetromino-drop {
   from {
     opacity: 0;
     transform: translate3d(0, -100vh, 0) rotate(-90deg);
@@ -497,7 +710,7 @@ a {
     transform: none;
   }
 
-  .j-piece {
+  .falling-piece {
     animation: none;
     opacity: 1;
     transform: none;

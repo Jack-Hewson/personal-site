@@ -14,8 +14,11 @@ const tetrominoClasses = [
 const firstNameLetters = Array.from('Jack')
 const lastNameLetters = Array.from('Hewson.')
 const jPieceDropDuration = 560
-const remainingFirstNameDelay = jPieceDropDuration * 3
-const lastNameStartDelay = remainingFirstNameDelay + (firstNameLetters.length - 2) * 90 + 850
+const aPieceStartDelay = jPieceDropDuration * 3
+const cPieceStartDelay = jPieceDropDuration * 6
+const kPieceStartDelay = jPieceDropDuration * 8
+const remainingFirstNameDelay = jPieceDropDuration * 11
+const lastNameStartDelay = remainingFirstNameDelay
 
 export default function Home() {
   return (
@@ -54,35 +57,121 @@ export default function Home() {
         <section className="home-intro" aria-labelledby="home-title">
           <p className="intro-eyebrow">DEVELOPER / LONDON, UK</p>
           <h1 id="home-title" aria-label="Jack Hewson">
-            <span className="name-line" aria-hidden="true">
+            <span className="name-line name-line-first" aria-hidden="true">
               {firstNameLetters.map((letter, index) => (
                 letter === 'J' ? (
                   <span className="name-letter name-letter-j" key={`jack-${index}`}>
-                    <span className="j-shape-grid">
+                    <span className="letter-piece-grid">
                       <span
-                        className="j-piece j-piece-horizontal tetromino-i"
+                        className="falling-piece j-piece-horizontal tetromino-i"
                         style={{ animationDelay: `${jPieceDropDuration * 2}ms` }}
                       >
                         {Array.from({ length: 4 }, (_, blockIndex) => (
-                          <span className="j-shape-cell" key={`top-${blockIndex}`} />
+                          <span className="piece-cell" key={`top-${blockIndex}`} />
                         ))}
                       </span>
                       <span
-                        className="j-piece j-piece-vertical tetromino-i"
+                        className="falling-piece j-piece-vertical tetromino-i"
                         style={{ animationDelay: `${jPieceDropDuration}ms` }}
                       >
                         {Array.from({ length: 4 }, (_, blockIndex) => (
-                          <span className="j-shape-cell" key={`right-${blockIndex}`} />
+                          <span className="piece-cell" key={`right-${blockIndex}`} />
                         ))}
                       </span>
                       <span
-                        className="j-piece j-piece-hook tetromino-j"
+                        className="falling-piece j-piece-hook tetromino-j"
                         style={{ animationDelay: '0ms' }}
                       >
-                        <span className="j-shape-cell hook-top" />
-                        <span className="j-shape-cell hook-bottom-left" />
-                        <span className="j-shape-cell hook-bottom-middle" />
-                        <span className="j-shape-cell hook-bottom-right" />
+                        <span className="piece-cell hook-top" />
+                        <span className="piece-cell hook-bottom-left" />
+                        <span className="piece-cell hook-bottom-middle" />
+                        <span className="piece-cell hook-bottom-right" />
+                      </span>
+                    </span>
+                  </span>
+                ) : letter === 'a' ? (
+                  <span className="name-letter name-letter-a" key={`jack-${index}`}>
+                    <span className="letter-piece-grid">
+                      <span
+                        className="falling-piece a-piece-cap tetromino-t"
+                        style={{ animationDelay: `${aPieceStartDelay}ms` }}
+                      >
+                        <span className="piece-cell cap-top" />
+                        <span className="piece-cell cap-left" />
+                        <span className="piece-cell cap-center" />
+                        <span className="piece-cell cap-right" />
+                      </span>
+                      <span
+                        className="falling-piece a-piece-left tetromino-t"
+                        style={{ animationDelay: `${aPieceStartDelay + jPieceDropDuration}ms` }}
+                      >
+                        <span className="piece-cell left-top" />
+                        <span className="piece-cell left-middle" />
+                        <span className="piece-cell left-arm" />
+                        <span className="piece-cell left-bottom" />
+                      </span>
+                      <span
+                        className="falling-piece a-piece-right tetromino-l"
+                        style={{ animationDelay: `${aPieceStartDelay + jPieceDropDuration * 2}ms` }}
+                      >
+                        <span className="piece-cell right-top" />
+                        <span className="piece-cell right-middle" />
+                        <span className="piece-cell right-foot" />
+                        <span className="piece-cell right-bottom" />
+                      </span>
+                    </span>
+                  </span>
+                ) : letter === 'c' ? (
+                  <span className="name-letter name-letter-c" key={`jack-${index}`}>
+                    <span className="letter-piece-grid">
+                      <span
+                        className="falling-piece c-piece-top tetromino-j"
+                        style={{ animationDelay: `${cPieceStartDelay}ms` }}
+                      >
+                        <span className="piece-cell c-top-left" />
+                        <span className="piece-cell c-top-middle" />
+                        <span className="piece-cell c-top-right" />
+                        <span className="piece-cell c-top-stem" />
+                      </span>
+                      <span
+                        className="falling-piece c-piece-bottom tetromino-j"
+                        style={{ animationDelay: `${cPieceStartDelay + jPieceDropDuration}ms` }}
+                      >
+                        <span className="piece-cell c-bottom-stem" />
+                        <span className="piece-cell c-bottom-left" />
+                        <span className="piece-cell c-bottom-middle" />
+                        <span className="piece-cell c-bottom-right" />
+                      </span>
+                    </span>
+                  </span>
+                ) : letter === 'k' ? (
+                  <span className="name-letter name-letter-k" key={`jack-${index}`}>
+                    <span className="letter-piece-grid">
+                      <span
+                        className="falling-piece k-piece-stem tetromino-i"
+                        style={{ animationDelay: `${kPieceStartDelay}ms` }}
+                      >
+                        {Array.from({ length: 5 }, (_, blockIndex) => (
+                          <span className="piece-cell" key={`k-stem-${blockIndex}`} />
+                        ))}
+                      </span>
+                      <span
+                        className="falling-piece k-piece-upper tetromino-s"
+                        style={{ animationDelay: `${kPieceStartDelay + jPieceDropDuration}ms` }}
+                      >
+                        <span className="piece-cell upper-top-left" />
+                        <span className="piece-cell upper-top-right" />
+                        <span className="piece-cell upper-bottom-left" />
+                        <span className="piece-cell upper-bottom-right" />
+                      </span>
+                      <span
+                        className="falling-piece k-piece-lower tetromino-z"
+                        style={{ animationDelay: `${kPieceStartDelay + jPieceDropDuration * 2}ms` }}
+                      >
+                        <span className="piece-cell lower-top-left" />
+                        <span className="piece-cell lower-top-right" />
+                        <span className="piece-cell lower-bottom-left" />
+                        <span className="piece-cell lower-bottom-right" />
                       </span>
                     </span>
                   </span>
@@ -90,7 +179,7 @@ export default function Home() {
                   <span
                     className={`name-letter ${tetrominoClasses[index % tetrominoClasses.length]}`}
                     key={`jack-${index}`}
-                    style={{ animationDelay: `${remainingFirstNameDelay + (index - 1) * 90}ms` }}
+                    style={{ animationDelay: `${remainingFirstNameDelay + (index - 2) * 90}ms` }}
                   >
                     {letter}
                   </span>
