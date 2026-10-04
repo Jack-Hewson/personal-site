@@ -13,7 +13,7 @@ const tetrisLetters: Record<TetrisLetter, TetrisLetterDefinition> = {
   A: { src: '/tetris-letters/a.svg', pieces: ['cap', 'left', 'right'] },
   C: { src: '/tetris-letters/c.svg', pieces: ['top', 'bottom'] },
   E: { src: '/tetris-letters/e.svg', pieces: ['upper', 'stem', 'lower'] },
-  H: { src: '/tetris-letters/h.svg', pieces: ['hook', 'stem'] },
+  H: { src: '/tetris-letters/h.svg', pieces: ['stem-left', 'upper-right', 'lower-right'] },
   J: { src: '/tetris-letters/j.svg', pieces: ['hook', 'stem'] },
   K: { src: '/tetris-letters/k.svg', pieces: ['upper', 'stem', 'lower'] },
   N: { src: '/tetris-letters/n.svg', pieces: ['hook', 'stem'] },
