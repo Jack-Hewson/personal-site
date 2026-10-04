@@ -1,15 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="10 10 30 40">
+<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="10 10 50 50">
     <title>J built from two falling block pieces</title>
     <style><![CDATA[ .block { width: var(--tetris-letter-block-size); height: var(--tetris-letter-block-size); stroke: var(--tetris-letter-outline-dark);  stroke-width: 1; } ]]></style>
     <g id="hook" fill="var(--tetris-letter-red)">
-        <rect class="block" x="10" y="20" />
         <rect class="block" x="10" y="30" />
-        <rect class="block" x="20" y="30" />
+        <rect class="block" x="10" y="40" />
+        <rect class="block" x="20" y="40" />
+        <rect class="block" x="30" y="40" />
     </g>
     <g id="stem" fill="var(--tetris-letter-blue-light)">
-        <rect class="block" x="30" y="0" />
-        <rect class="block" x="30" y="10" />
-        <rect class="block" x="30" y="20" />
-        <rect class="block" x="30" y="30" />
+        <rect class="block" x="40" y="0" />
+        <rect class="block" x="40" y="10" />
+        <rect class="block" x="40" y="20" />
+        <rect class="block" x="40" y="30" />
+        <rect class="block" x="40" y="40" />
     </g>
 </svg>
