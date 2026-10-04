@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="49" height="49" viewBox="0 0 49 49">
+  <title>J built from three falling block pieces</title>
+  <style><![CDATA[
+    .piece { opacity: 0; transform-box: fill-box; transform-origin: center; animation: fall 560ms cubic-bezier(.16, 1, .3, 1) both; }
+    .hook { animation-delay: 0ms; }
+    .stem { animation-delay: 560ms; }
+    .cap { animation-delay: 1120ms; }
+    .block { stroke: #fff; stroke-opacity: .45; stroke-width: .7; }
+    @keyframes fall {
+      from { opacity: 0; transform: translateY(-160px) rotate(-90deg); }
+      82% { opacity: 1; transform: translateY(2px) rotate(3deg); }
+      to { opacity: 1; transform: translateY(0) rotate(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .piece { animation: none; opacity: 1; transform: none; }
+    }
+  ]]></style>
+  <g class="piece hook" fill="#7090df">
+    <rect class="block" x="0" y="30" width="9" height="9" />
+    <rect class="block" x="0" y="40" width="9" height="9" />
+    <rect class="block" x="10" y="40" width="9" height="9" />
+    <rect class="block" x="20" y="40" width="9" height="9" />
+  </g>
+  <g class="piece stem" fill="#48bfd2">
+    <rect class="block" x="30" y="10" width="9" height="9" />
+    <rect class="block" x="30" y="20" width="9" height="9" />
+    <rect class="block" x="30" y="30" width="9" height="9" />
+    <rect class="block" x="30" y="40" width="9" height="9" />
+  </g>
+  <g class="piece cap" fill="#48bfd2">
+    <rect class="block" x="10" y="0" width="9" height="9" />
+    <rect class="block" x="20" y="0" width="9" height="9" />
+    <rect class="block" x="30" y="0" width="9" height="9" />
+    <rect class="block" x="40" y="0" width="9" height="9" />
+  </g>
+</svg>
