@@ -1,34 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="39" height="49" viewBox="0 0 39 49">
   <title>K built from three falling block pieces</title>
-  <style><![CDATA[
-    .piece { opacity: 0; transform-box: fill-box; transform-origin: center; animation: fall 560ms cubic-bezier(.16, 1, .3, 1) both; }
-    .stem { animation-delay: 4480ms; }
-    .upper { animation-delay: 5040ms; }
-    .lower { animation-delay: 5600ms; }
-    .block { stroke: #fff; stroke-opacity: .45; stroke-width: .7; }
-    @keyframes fall {
-      from { opacity: 0; transform: translateY(-160px) rotate(-90deg); }
-      82% { opacity: 1; transform: translateY(2px) rotate(3deg); }
-      to { opacity: 1; transform: translateY(0) rotate(0); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .piece { animation: none; opacity: 1; transform: none; }
-    }
-  ]]></style>
-  <g class="piece stem" fill="#48bfd2">
+  <style><![CDATA[ .block { stroke: #fff; stroke-opacity: .45; stroke-width: .7; } ]]></style>
+  <g id="stem" fill="#48bfd2">
     <rect class="block" x="0" y="0" width="9" height="9" />
     <rect class="block" x="0" y="10" width="9" height="9" />
     <rect class="block" x="0" y="20" width="9" height="9" />
     <rect class="block" x="0" y="30" width="9" height="9" />
     <rect class="block" x="0" y="40" width="9" height="9" />
   </g>
-  <g class="piece upper" fill="#76c878">
+  <g id="upper" fill="#76c878">
     <rect class="block" x="20" y="10" width="9" height="9" />
     <rect class="block" x="30" y="10" width="9" height="9" />
     <rect class="block" x="10" y="20" width="9" height="9" />
     <rect class="block" x="20" y="20" width="9" height="9" />
   </g>
-  <g class="piece lower" fill="#e87965">
+  <g id="lower" fill="#e87965">
     <rect class="block" x="10" y="30" width="9" height="9" />
     <rect class="block" x="20" y="30" width="9" height="9" />
     <rect class="block" x="20" y="40" width="9" height="9" />

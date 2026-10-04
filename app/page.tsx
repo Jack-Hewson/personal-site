@@ -12,10 +12,45 @@ const tetrominoClasses = [
   'tetromino-l',
 ]
 const firstNameGlyphs = [
-  { letter: 'J', src: '/name-glyphs/j.svg', width: 49 },
-  { letter: 'A', src: '/name-glyphs/a.svg', width: 39 },
-  { letter: 'C', src: '/name-glyphs/c.svg', width: 29 },
-  { letter: 'K', src: '/name-glyphs/k.svg', width: 39 },
+  {
+    letter: 'J',
+    src: '/name-glyphs/j.svg',
+    width: 49,
+    pieces: [
+      { id: 'hook', delay: 0 },
+      { id: 'stem', delay: 560 },
+      { id: 'cap', delay: 1120 },
+    ],
+  },
+  {
+    letter: 'A',
+    src: '/name-glyphs/a.svg',
+    width: 39,
+    pieces: [
+      { id: 'cap', delay: 1680 },
+      { id: 'left', delay: 2240 },
+      { id: 'right', delay: 2800 },
+    ],
+  },
+  {
+    letter: 'C',
+    src: '/name-glyphs/c.svg',
+    width: 29,
+    pieces: [
+      { id: 'top', delay: 3360 },
+      { id: 'bottom', delay: 3920 },
+    ],
+  },
+  {
+    letter: 'K',
+    src: '/name-glyphs/k.svg',
+    width: 39,
+    pieces: [
+      { id: 'stem', delay: 4480 },
+      { id: 'upper', delay: 5040 },
+      { id: 'lower', delay: 5600 },
+    ],
+  },
 ]
 const lastNameLetters = Array.from('Hewson.')
 const lastNameStartDelay = 6160
@@ -60,15 +95,22 @@ export default function Home() {
             <span className="name-line name-line-first" aria-hidden="true">
               {firstNameGlyphs.map((glyph) => (
                 <span className="name-glyph" key={glyph.letter}>
-                  <Image
-                    src={glyph.src}
-                    alt=""
+                  <svg
+                    className="name-glyph-svg"
                     width={glyph.width}
                     height={49}
-                    unoptimized
-                    priority
-                    className="name-glyph-image"
-                  />
+                    viewBox={`0 0 ${glyph.width} 49`}
+                    aria-hidden="true"
+                  >
+                    {glyph.pieces.map((piece) => (
+                      <use
+                        href={`${glyph.src}#${piece.id}`}
+                        className="name-glyph-piece"
+                        key={piece.id}
+                        style={{ animationDelay: `${piece.delay}ms` }}
+                      />
+                    ))}
+                  </svg>
                 </span>
               ))}
             </span>
