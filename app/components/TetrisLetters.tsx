@@ -22,7 +22,7 @@ const tetrisLetters: Record<TetrisLetter, TetrisLetterDefinition> = {
   W: { src: '/tetris-letters/w.svg', pieces: ['hook', 'stem'] },
 };
 
-async function getTetrisLetterDimensions(src: string) {
+async function getTetrisLetterViewBox(src: string) {
   const svg = await readFile(join(process.cwd(), 'public', src.slice(1)), 'utf8');
   const root = svg.match(/<svg\b([^>]*)>/)?.[1];
 
@@ -30,16 +30,13 @@ async function getTetrisLetterDimensions(src: string) {
     throw new Error(`Could not read SVG root element for ${src}`);
   }
 
-  const getAttribute = (name: string) => root.match(new RegExp(`\\b${name}="([^"]+)"`))?.[1];
-  const width = Number.parseFloat(getAttribute('width') ?? '');
-  const height = Number.parseFloat(getAttribute('height') ?? '');
-  const viewBox = getAttribute('viewBox');
+  const viewBox = root.match(/\bviewBox="([^"]+)"/)?.[1];
 
-  if (!Number.isFinite(width) || !Number.isFinite(height) || !viewBox) {
-    throw new Error(`Missing valid width, height, or viewBox in ${src}`);
+  if (!viewBox) {
+    throw new Error(`Missing viewBox in ${src}`);
   }
 
-  return { width, height, viewBox };
+  return viewBox;
 }
 
 export default async function TetrisLetters({
@@ -48,13 +45,12 @@ export default async function TetrisLetters({
   rows: readonly (readonly TetrisLetter[])[];
 }) {
   const usedLetters = [...new Set(rows.flat())];
-  const letterDimensions = await Promise.all(
+  const letterViewBoxes = await Promise.all(
     usedLetters.map(
-      async (letter) =>
-        [letter, await getTetrisLetterDimensions(tetrisLetters[letter].src)] as const
+      async (letter) => [letter, await getTetrisLetterViewBox(tetrisLetters[letter].src)] as const
     )
   );
-  const dimensions = new Map(letterDimensions);
+  const viewBoxes = new Map(letterViewBoxes);
   let nextDelay = 0;
 
   return (
@@ -63,23 +59,15 @@ export default async function TetrisLetters({
         <span className="name-tetris-letter-row" key={rowIndex} aria-hidden="true">
           {letters.map((letter, index) => {
             const definition = tetrisLetters[letter];
-            const letterSize = dimensions.get(letter);
+            const viewBox = viewBoxes.get(letter);
 
-            if (!letterSize) {
-              throw new Error(`Missing dimensions for Tetris letter ${letter}`);
+            if (!viewBox) {
+              throw new Error(`Missing viewBox for Tetris letter ${letter}`);
             }
-
-            const { width, height, viewBox } = letterSize;
 
             return (
               <span className="name-tetris-letter" key={`${letter}-${index}`}>
-                <svg
-                  className="name-tetris-letter-svg"
-                  width={width}
-                  height={height}
-                  viewBox={viewBox}
-                  aria-hidden="true"
-                >
+                <svg className="name-tetris-letter-svg" viewBox={viewBox} aria-hidden="true">
                   {definition.pieces.map((id) => {
                     const delay = nextDelay;
                     nextDelay += tetrisLetterDropDuration;

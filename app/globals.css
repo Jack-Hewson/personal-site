@@ -5,6 +5,8 @@
   --home-ink: #17211c;
   --home-muted: #69726a;
   --home-accent: #c7ed68;
+  --tetris-letter-height: 40px;
+  --tetris-letter-width: 30px;
   --tetris-letter-block-size: 10px;
   --tetris-letter-green: #00c853;
   --tetris-letter-red: #f44336;
@@ -188,12 +190,14 @@ a {
 .name-tetris-letter {
   display: block;
   flex: none;
-  height: 40px;
+  height: var(--tetris-letter-height);
   line-height: 0;
 }
 
 .name-tetris-letter-svg {
   display: block;
+  width: var(--tetris-letter-width);
+  height: var(--tetris-letter-height);
   overflow: visible;
 }
 

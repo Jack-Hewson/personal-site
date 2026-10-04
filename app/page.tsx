@@ -5,7 +5,7 @@ import TetrisLetters from './components/TetrisLetters';
 
 const tetrisLetterRows = [
   ['J', 'A', 'C', 'K'],
-  ['K', 'A', 'C', 'J', 'A', 'C'],
+//   ['H', 'E', 'W', 'S', 'O', 'N'],
 ] as const;
 
 export default async function Home() {
