@@ -1,4 +1,4 @@
-﻿<svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 30 40">
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 10 30 40">
     <title>A built from three falling block pieces</title>
     <style><![CDATA[ .block { width: var(--glyph-block-size); height: var(--glyph-block-size); stroke: var(--glyph-outline-dark);  stroke-width: 1; } ]]></style>
     <g id="cap" fill="var(--glyph-green)">

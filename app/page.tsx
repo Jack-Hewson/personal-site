@@ -1,6 +1,8 @@
-import ArrowOutward from '@mui/icons-material/ArrowOutward'
-import Image from 'next/image'
-import Link from 'next/link'
+import { readFile } from 'node:fs/promises';
+import { join } from 'node:path';
+import ArrowOutward from '@mui/icons-material/ArrowOutward';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const tetrominoClasses = [
   'tetromino-i',
@@ -10,12 +12,11 @@ const tetrominoClasses = [
   'tetromino-z',
   'tetromino-j',
   'tetromino-l',
-]
+];
 const firstNameGlyphs = [
   {
     letter: 'J',
     src: '/name-glyphs/j.svg',
-    width: 49,
     pieces: [
       { id: 'hook', delay: 0 },
       { id: 'stem', delay: 560 },
@@ -25,7 +26,6 @@ const firstNameGlyphs = [
   {
     letter: 'A',
     src: '/name-glyphs/a.svg',
-    width: 39,
     pieces: [
       { id: 'cap', delay: 1680 },
       { id: 'left', delay: 2240 },
@@ -35,7 +35,6 @@ const firstNameGlyphs = [
   {
     letter: 'C',
     src: '/name-glyphs/c.svg',
-    width: 29,
     pieces: [
       { id: 'top', delay: 3360 },
       { id: 'bottom', delay: 3920 },
@@ -44,18 +43,44 @@ const firstNameGlyphs = [
   {
     letter: 'K',
     src: '/name-glyphs/k.svg',
-    width: 39,
     pieces: [
       { id: 'stem', delay: 4480 },
       { id: 'upper', delay: 5040 },
       { id: 'lower', delay: 5600 },
     ],
   },
-]
-const lastNameLetters = Array.from('Hewson')
-const lastNameStartDelay = 6160
+];
+const lastNameLetters = Array.from('Hewson');
+const lastNameStartDelay = 6160;
 
-export default function Home() {
+async function getGlyphDimensions(src: string) {
+  const svg = await readFile(join(process.cwd(), 'public', src.slice(1)), 'utf8');
+  const root = svg.match(/<svg\b([^>]*)>/)?.[1];
+
+  if (!root) {
+    throw new Error(`Could not read SVG root element for ${src}`);
+  }
+
+  const getAttribute = (name: string) => root.match(new RegExp(`\\b${name}="([^"]+)"`))?.[1];
+  const width = Number.parseFloat(getAttribute('width') ?? '');
+  const height = Number.parseFloat(getAttribute('height') ?? '');
+  const viewBox = getAttribute('viewBox');
+
+  if (!Number.isFinite(width) || !Number.isFinite(height) || !viewBox) {
+    throw new Error(`Missing valid width, height, or viewBox in ${src}`);
+  }
+
+  return { width, height, viewBox };
+}
+
+export default async function Home() {
+  const glyphs = await Promise.all(
+    firstNameGlyphs.map(async (glyph) => ({
+      ...glyph,
+      ...(await getGlyphDimensions(glyph.src)),
+    }))
+  );
+
   return (
     <main className="home-page">
       <section className="home-visual" aria-label="London skyline">
@@ -93,13 +118,13 @@ export default function Home() {
           <p className="intro-eyebrow">DEVELOPER / LONDON, UK</p>
           <h1 id="home-title" aria-label="Jack Hewson">
             <span className="name-line name-line-first" aria-hidden="true">
-              {firstNameGlyphs.map((glyph) => (
+              {glyphs.map((glyph) => (
                 <span className="name-glyph" key={glyph.letter}>
                   <svg
                     className="name-glyph-svg"
                     width={glyph.width}
-                    height={49}
-                    viewBox={`0 0 ${glyph.width} 49`}
+                    height={glyph.height}
+                    viewBox={glyph.viewBox}
                     aria-hidden="true"
                   >
                     {glyph.pieces.map((piece) => (
@@ -128,7 +153,8 @@ export default function Home() {
             </span>
           </h1>
           <p className="intro-copy">
-            I build thoughtful digital experiences, with care for the details and the people who use them.
+            I build thoughtful digital experiences, with care for the details and the people who use
+            them.
           </p>
           <nav className="home-actions" aria-label="Main navigation">
             <Link className="home-action home-action-primary" href="/about">
@@ -151,5 +177,5 @@ export default function Home() {
         </footer>
       </aside>
     </main>
-  )
+  );
 }
