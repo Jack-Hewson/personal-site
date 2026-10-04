@@ -5,18 +5,15 @@
   --home-ink: #17211c;
   --home-muted: #69726a;
   --home-accent: #c7ed68;
+  --glyph-block-size: 10px;
   --glyph-green: #00c853;
+  --glyph-red: #f44336;
   --glyph-purple: #9c27b0;
   --glyph-orange: #ff9800;
-  --glyph-blue: #7090df;
-  --glyph-cyan: #48bfd2;
-  --glyph-light-green: #76c878;
-  --glyph-coral: #e87965;
-  --glyph-yellow: #edc448;
-  --glyph-lavender: #a88bdd;
-  --glyph-amber: #e6a044;
+  --glyph-yellow: #ffeb3b;
+  --glyph-blue-light: #00bcd4;
+  --glyph-blue-dark: #3f51b5;
   --glyph-outline-dark: #000;
-  --glyph-outline-light: #fff;
 }
 
 * {
@@ -183,7 +180,7 @@ a {
 
 .name-line-first {
   display: inline-flex;
-  min-height: 49px;
+  min-height: 40px;
   align-items: flex-end;
   gap: 0.12em;
 }
@@ -191,7 +188,7 @@ a {
 .name-glyph {
   display: block;
   flex: none;
-  height: 49px;
+  height: 40px;
   line-height: 0;
 }
 

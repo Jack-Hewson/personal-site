@@ -1,16 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="29" height="49" viewBox="0 0 29 49">
-  <title>C built from two falling block pieces</title>
-  <style><![CDATA[ .block { stroke: var(--glyph-outline-light); stroke-opacity: .45; stroke-width: .7; } ]]></style>
-  <g id="top" fill="var(--glyph-blue)">
-    <rect class="block" x="0" y="10" width="9" height="9" />
-    <rect class="block" x="10" y="10" width="9" height="9" />
-    <rect class="block" x="20" y="10" width="9" height="9" />
-    <rect class="block" x="0" y="20" width="9" height="9" />
-  </g>
-  <g id="bottom" fill="var(--glyph-blue)">
-    <rect class="block" x="0" y="30" width="9" height="9" />
-    <rect class="block" x="0" y="40" width="9" height="9" />
-    <rect class="block" x="10" y="40" width="9" height="9" />
-    <rect class="block" x="20" y="40" width="9" height="9" />
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 30 40">
+    <title>C built from two falling block pieces</title>
+    <style><![CDATA[ .block { width: var(--glyph-block-size); height: var(--glyph-block-size); stroke: var(--glyph-outline-dark);  stroke-width: 1; } ]]></style>
+    <g id="top" fill="var(--glyph-blue-light)">
+        <rect class="block" x="0" y="10" />
+        <rect class="block" x="10" y="10" />
+        <rect class="block" x="20" y="10" />
+        <rect class="block" x="0" y="20" />
+    </g>
+    <g id="bottom" fill="var(--glyph-yellow)">
+        <rect class="block" x="0" y="30" />
+        <rect class="block" x="0" y="40" />
+        <rect class="block" x="10" y="40" />
+        <rect class="block" x="20" y="40" />
+    </g>
 </svg>
