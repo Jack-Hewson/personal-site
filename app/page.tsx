@@ -4,16 +4,7 @@ import ArrowOutward from '@mui/icons-material/ArrowOutward';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const tetrominoClasses = [
-  'tetromino-i',
-  'tetromino-o',
-  'tetromino-t',
-  'tetromino-s',
-  'tetromino-z',
-  'tetromino-j',
-  'tetromino-l',
-];
-const firstNameGlyphs = [
+const firstNameLetters = [
   {
     letter: 'J',
     src: '/name-glyphs/j.svg',
@@ -50,8 +41,6 @@ const firstNameGlyphs = [
     ],
   },
 ];
-const lastNameLetters = Array.from('Hewson');
-const lastNameStartDelay = 6160;
 
 async function getGlyphDimensions(src: string) {
   const svg = await readFile(join(process.cwd(), 'public', src.slice(1)), 'utf8');
@@ -75,7 +64,7 @@ async function getGlyphDimensions(src: string) {
 
 export default async function Home() {
   const glyphs = await Promise.all(
-    firstNameGlyphs.map(async (glyph) => ({
+    firstNameLetters.map(async (glyph) => ({
       ...glyph,
       ...(await getGlyphDimensions(glyph.src)),
     }))
@@ -116,7 +105,7 @@ export default async function Home() {
 
         <section className="home-intro" aria-labelledby="home-title">
           <p className="intro-eyebrow">DEVELOPER / LONDON, UK</p>
-          <h1 id="home-title" aria-label="Jack Hewson">
+          <h1 id="home-title" aria-label="Jack">
             <span className="name-line name-line-first" aria-hidden="true">
               {glyphs.map((glyph) => (
                 <span className="name-glyph" key={glyph.letter}>
@@ -136,18 +125,6 @@ export default async function Home() {
                       />
                     ))}
                   </svg>
-                </span>
-              ))}
-            </span>
-            <br />
-            <span className="name-line name-line-last" aria-hidden="true">
-              {lastNameLetters.map((letter, index) => (
-                <span
-                  className={`name-letter ${tetrominoClasses[(index + firstNameGlyphs.length) % tetrominoClasses.length]}`}
-                  key={`hewson-${index}`}
-                  style={{ animationDelay: `${lastNameStartDelay + index * 90}ms` }}
-                >
-                  {letter}
                 </span>
               ))}
             </span>
