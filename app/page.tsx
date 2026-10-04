@@ -52,7 +52,7 @@ const firstNameGlyphs = [
     ],
   },
 ]
-const lastNameLetters = Array.from('Hewson.')
+const lastNameLetters = Array.from('Hewson')
 const lastNameStartDelay = 6160
 
 export default function Home() {

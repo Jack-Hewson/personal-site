@@ -5,6 +5,18 @@
   --home-ink: #17211c;
   --home-muted: #69726a;
   --home-accent: #c7ed68;
+  --glyph-green: #00c853;
+  --glyph-purple: #9c27b0;
+  --glyph-orange: #ff9800;
+  --glyph-blue: #7090df;
+  --glyph-cyan: #48bfd2;
+  --glyph-light-green: #76c878;
+  --glyph-coral: #e87965;
+  --glyph-yellow: #edc448;
+  --glyph-lavender: #a88bdd;
+  --glyph-amber: #e6a044;
+  --glyph-outline-dark: #000;
+  --glyph-outline-light: #fff;
 }
 
 * {
@@ -237,48 +249,6 @@ a {
   box-shadow: var(--piece-shadow);
   content: '';
   filter: drop-shadow(1px 2px 0 rgb(0 0 0 / 14%));
-}
-
-.tetromino-i {
-  --piece-width: 12px;
-  --piece-color: #48bfd2;
-  --piece-shadow: 0 -12px #48bfd2, 0 12px #48bfd2, 0 24px #48bfd2;
-}
-
-.tetromino-o {
-  --piece-width: 24px;
-  --piece-color: #edc448;
-  --piece-shadow: 12px 0 #edc448, 0 12px #edc448, 12px 12px #edc448;
-}
-
-.tetromino-t {
-  --piece-width: 36px;
-  --piece-color: #a88bdd;
-  --piece-shadow: -12px 0 #a88bdd, 12px 0 #a88bdd, 0 12px #a88bdd;
-}
-
-.tetromino-s {
-  --piece-width: 36px;
-  --piece-color: #76c878;
-  --piece-shadow: 12px 0 #76c878, -12px 12px #76c878, 0 12px #76c878;
-}
-
-.tetromino-z {
-  --piece-width: 36px;
-  --piece-color: #e87965;
-  --piece-shadow: -12px 0 #e87965, 0 12px #e87965, 12px 12px #e87965;
-}
-
-.tetromino-j {
-  --piece-width: 36px;
-  --piece-color: #7090df;
-  --piece-shadow: -12px 0 #7090df, 12px 0 #7090df, 12px 12px #7090df;
-}
-
-.tetromino-l {
-  --piece-width: 36px;
-  --piece-color: #e6a044;
-  --piece-shadow: -12px 0 #e6a044, 12px 0 #e6a044, -12px 12px #e6a044;
 }
 
 .intro-copy {
